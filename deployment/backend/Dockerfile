@@ -1,7 +1,7 @@
 FROM alang/django:4.0
 
 ENV DJANGO_APP=api
-ENV DJANGO_MANAGEMENT_ON_START="migrate --noinput;collectstatic --noinput;compilemessages;"
+ENV DJANGO_MANAGEMENT_ON_START="migrate --noinput;collectstatic --noinput;"
 
 USER root
 RUN apk add --no-cache gcc postgresql-dev musl-dev zlib-dev jpeg-dev
