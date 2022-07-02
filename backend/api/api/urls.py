@@ -26,7 +26,7 @@ router.register(
     r'campaigns',
     CampaignViewSet,
     basename='advertiser-campaign',
-    parents_query_lookups=['campaign']
+    parents_query_lookups=['advertiser']
 )
 
 urlpatterns = [
