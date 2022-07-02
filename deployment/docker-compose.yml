@@ -2,21 +2,23 @@ version: "3.9"
 
 services:
   backend:
-    build: backend/Dockerfile
+    build:
+      context: ../
+      dockerfile: deployment/backend/Dockerfile
     networks:
       - ton_ads_network
     volumes:
       - static:/var/www/static
       - media:/var/www/media
     env_file:
-      - .env
+      - backend/.env
     depends_on:
       - db
 
   nginx:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      context: ../
+      dockerfile: deployment/frontend/Dockerfile
     ports:
     - "80:80"
     - "443:443"
@@ -33,9 +35,9 @@ services:
   db:
     image: "postgres:13-alpine"
     env_file:
-      - .env
+      - backend/.env
     networks:
-      - megafon_dictionary_network
+      - ton_ads_network
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
@@ -45,5 +47,5 @@ volumes:
   media:
 
 networks:
-  megafon_dictionary_network:
+  ton_ads_network:
     driver: bridge

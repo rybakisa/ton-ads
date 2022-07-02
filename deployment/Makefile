@@ -4,7 +4,7 @@ export
 
 .PHONY: up build npm_build build_up start down clean network
 
-docker_compose := docker compose -p ${COMPOSE_PROJECT} -f docker-compose.yaml
+docker_compose := docker compose -p ${COMPOSE_PROJECT} -f docker-compose.yml
 
 up: network
 	${docker_compose} up -d

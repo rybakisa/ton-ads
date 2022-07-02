@@ -1,4 +1,4 @@
-FROM node:14.18.1-alpine AS build_frontend
+FROM node:18.4.0-alpine AS build_frontend
 
 ENV GUNICORN_USER_NAME=gunicorn
 ENV GUNICORN_USER_UID=1001
@@ -27,7 +27,7 @@ COPY --from=build_frontend /usr/frontend/build /var/www/frontend
 
 USER root
 
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY config/nginx/cors.conf /etc/nginx/cors.conf
-COPY config/nginx/proxy.conf /etc/nginx/proxy.conf
-COPY config/nginx/megafon_dictionary.nginx.conf /etc/nginx/conf.d/default.conf
+COPY deployment/frontend/config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY deployment/frontend/config/nginx/cors.conf /etc/nginx/cors.conf
+COPY deployment/frontend/config/nginx/proxy.conf /etc/nginx/proxy.conf
+COPY deployment/frontend/config/nginx/ton_ads.nginx.conf /etc/nginx/conf.d/default.conf
