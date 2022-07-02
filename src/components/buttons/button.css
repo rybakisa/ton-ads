@@ -1,0 +1,97 @@
+.button--primary {
+    background: var(--ton-blue);
+    color: var(--text-color-white);
+    transition: var(--default-transition);
+}
+
+.button--primary:hover {
+    color: var(--text-color-white);
+    background: var(--ton-blue-hov);
+}
+
+.button--primary:active {
+    color: var(--text-color-white);
+    background: var(--ton-blue-act);
+    transition: var(--no-transition);
+}
+
+.button--secondary {
+    background: transparent;
+    color: var(--ton-blue);
+    transition: var(--default-transition);
+    border: 2px solid var(--ton-blue);
+}
+
+.button--secondary:hover {
+    color: var(--text-color-white);
+    background: var(--ton-blue-hov);
+    border: 2px solid var(--ton-blue-hov);
+}
+
+.button--secondary:active {
+    color: var(--text-color-white);
+    background: var(--ton-blue-act);
+    transition: var(--no-transition);
+    border: 2px solid var(--ton-blue-act);
+}
+
+.button--tretiary {
+    background: var(--white);
+    color: var(--text-color-black);
+    transition: var(--default-transition);
+}
+
+.button--tretiary:hover {
+    color: var(--ton-blue);
+    background: var(--white-hov);
+}
+
+.button--tretiary:active {
+    color: var(--ton-blue);
+    background: var(--white-act);
+    transition: var(--no-transition);
+}
+
+.tab {
+    border-radius: 16px 16px 0px 0px;
+    transition: var(--default-transition);
+    box-shadow: var(--tab-shadow) var(--white-hov);
+    border: none;
+    height: 100%;
+}
+
+.tab:hover {
+    /* border-bottom: 2px solid var(--ton-blue-hov); */
+    box-shadow: var(--tab-shadow) var(--ton-blue-hov);
+    border: none;
+}
+
+.tab:active {
+    /* border-bottom: 2px solid var(--ton-blue-act); */
+    box-shadow: var(--tab-shadow) var(--ton-blue-act);
+    transition: var(--no-transition);
+    border: none;
+}
+
+.text-arrow-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    transition: var(--default-transition);
+    color: var(--ton-blue);
+}
+
+.text-arrow-button:hover {
+    color: var(--ton-blue-hov);
+    fill: var(--ton-blue-hov);
+} 
+
+.text-arrow-button:active {
+    color: var(--ton-blue-act);
+    fill: var(--ton-blue-act);
+    transition: var(--no-transition);
+} 
