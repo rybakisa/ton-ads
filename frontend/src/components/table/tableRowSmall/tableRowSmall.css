@@ -1,0 +1,22 @@
+.table-row-small {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--bright-background);
+    height: 48px;
+    max-width: var(--max-width-plus);
+    margin: auto;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.table-row-small--right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+}

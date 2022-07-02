@@ -1,0 +1,27 @@
+.table-small-segment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.table-small-segment--ton-icon {
+    height: 14px;
+    width: 14px;
+}
+
+.yellow {
+    color: var(--attention);
+}
+
+.red {
+    color: var(--warning);
+}

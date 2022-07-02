@@ -12,7 +12,7 @@ const TableRowLarge = () => {
                 <TableBigSegment headline='Automatch' interactive= <TextArrowButtonBig link='#a' text='Triggers' /> />
                 <TableBigSegment headline='　' interactive=<Toggle /> />
                 <TableBigSegment headline='Content' interactive= <TextArrowButtonBig link='#a' text='View Content' /> />
-                <TableBigSegment headline='Actions' interactive= <TextArrowButtonBig link='#a' text='Delete' /> />
+                <TableBigSegment headline='Actions' interactive= <TextArrowButtonBig link='#a' text='Delete' red /> />
             </div>
         </div>
     )

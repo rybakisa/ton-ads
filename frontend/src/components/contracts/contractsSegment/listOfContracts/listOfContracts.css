@@ -1,0 +1,23 @@
+.contracts-segment--wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.contracts-project {
+    margin: auto;
+    width: 100%;
+    max-width: var(--max-width);
+    margin-top: 48px;
+}
+
+.top-margin {
+    margin-top: 80px;
+}
+
+.contracts-project--rows {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 24px;
+    gap: 4px;
+}

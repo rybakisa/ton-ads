@@ -11,6 +11,8 @@ import reportWebVitals from './reportWebVitals';
 import Profile from './components/profile/Profile';
 import Header from './components/header/Header';
 import AdSettings from './components/adSettings/AdSettings';
+import Contracts from './components/contracts/Contracts';
+import AdMarket from './components/adMarket/AdMarket';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,8 +20,8 @@ root.render(
   <Header />
     <Routes>
       <Route path="/profile" element={<Profile />} />
-      {/* <Route path="adMarket" element={<AdMarket />} />
-      <Route path="contracts" element={<Contracts />} /> */}
+      <Route path="adMarket" element={<AdMarket />} />
+      <Route path="contracts" element={<Contracts />} />
       <Route path="adSettings" element={<AdSettings />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
