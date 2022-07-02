@@ -1,0 +1,38 @@
+.address-copy-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 32px;
+    background: var(--bright-background);
+    border-radius: 12px;
+    transition: var(--default-transition);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: var(--birght-p);
+    max-width: 300px;
+}
+
+.address-copy-button:hover {
+    background: var(--white-hov);
+    color: var(--ton-blue-hov);
+}
+
+.address-copy-button:active {
+    background: var(--white-act);
+    transition: var(--no-transition);
+    color: var(--ton-blue-act);
+}
+
+.address-copy-button--address {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+}
+
+.address-copy-button--icon {
+    width: 24px;
+    height: 24px;
+}
