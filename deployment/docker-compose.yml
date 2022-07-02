@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build: backend/Dockerfile
+    networks:
+      - ton_ads_network
+    volumes:
+      - static:/var/www/static
+      - media:/var/www/media
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+    - "80:80"
+    - "443:443"
+    networks:
+    - ton_ads_network
+    volumes:
+      - static:/var/www/static
+      - media:/var/www/media
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - backend
+    restart: always
+
+  db:
+    image: "postgres:13-alpine"
+    env_file:
+      - .env
+    networks:
+      - megafon_dictionary_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
+  static:
+  media:
+
+networks:
+  megafon_dictionary_network:
+    driver: bridge
