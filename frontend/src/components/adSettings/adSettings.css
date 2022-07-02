@@ -1,0 +1,12 @@
+.ad-settings--wrap {
+    margin: auto;
+    margin-top: 40px;
+    max-width: var(--max-width);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ad-settings--elements {
+    margin-top: 24px;
+}

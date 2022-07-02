@@ -60,6 +60,10 @@
     height: 100%;
 }
 
+.tab .button--primary {
+    box-shadow: var(--tab-shadow) var(--ton-blue);
+}
+
 .tab:hover {
     /* border-bottom: 2px solid var(--ton-blue-hov); */
     box-shadow: var(--tab-shadow) var(--ton-blue-hov);
@@ -88,10 +92,21 @@
 .text-arrow-button:hover {
     color: var(--ton-blue-hov);
     fill: var(--ton-blue-hov);
-} 
+}
 
 .text-arrow-button:active {
     color: var(--ton-blue-act);
     fill: var(--ton-blue-act);
     transition: var(--no-transition);
-} 
+}
+
+.big {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.arrow-big {
+    height: 32px;
+    width: 32px;
+}

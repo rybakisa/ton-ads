@@ -10,7 +10,6 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 23px;
-    color: var(--birght-p);
     max-width: 300px;
 }
 
@@ -30,6 +29,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 220px;
+    color: var(--bright-p)
 }
 
 .address-copy-button--icon {

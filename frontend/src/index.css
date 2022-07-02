@@ -47,11 +47,14 @@
   --default-transition: .1s linear;
   --no-transition: 0s;
   --tab-shadow: inset 0 -2px 0;
+  --max-width: 1160px;
+  --max-width-plus: 1200px;
 
 }
 
 html {
   scroll-behavior: smooth;
+  overflow: overlay;
 }
 
 
@@ -71,4 +74,14 @@ button {
   font-weight: 700;
   font-size: 18px;
   color: var(--text-color-black);
+}
+
+h1 {
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+b {
+  font-weight: 900;
 }

@@ -1,0 +1,34 @@
+.toggle--wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    padding: 0px 2px;
+    gap: 10px;
+    width: 64px;
+    height: 30px;
+    background: var(--ton-blue);
+    border-radius: 30px;
+    transition: var(--default-transition);
+}
+
+.toggle--wrap:hover {
+    background: var(--ton-blue-hov);
+}
+
+.toggle--circle {
+    width: 26px;
+    height: 26px;
+    background: var(--white);
+    border-radius: 100%;
+}
+
+.toggle--disabled {
+    transition: var(--default-transition);
+    justify-content: left;
+    background: var(--bright-p);
+}
+
+.toggle--disabled:hover {
+    background: var(--dark-button-hov);
+}
