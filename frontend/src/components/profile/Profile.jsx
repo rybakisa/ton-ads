@@ -6,7 +6,7 @@ import ProjectWidgets from './profileWidgets/ProjectWidgets'
 const Profile = () => {
   return (
     <>
-      <ProfileInfo name='Thomas Adbuyers' walletAddress='gteshg59-sehgf43gG43gF43f43faf' tonAmount='14,095' tonDelta='1,735' headline='Spent This Month'/>
+      <ProfileInfo name='Thomas Adbuyers' walletAddress='EQDIpd5DBvwhP45fLWa54-VYlIIsjXrWPHwHKqmdASId5NP2' tonAmount='14,095' tonDelta='1,735' headline='Spent This Month'/>
       <ProfileWidgets />
       <ProjectWidgets />
       <ProjectWidgets />
