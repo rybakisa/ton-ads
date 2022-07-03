@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'placements',
     'advertisers',
     'campaigns',
+    'contracts',
 ]
 
 MIDDLEWARE = [
