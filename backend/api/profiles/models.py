@@ -8,7 +8,7 @@ class Profile(models.Model):
         blank=False,
         on_delete=models.CASCADE,
     )
-    ton_account_seed = models.CharField(
+    ton_account_mnemonic = models.CharField(
         max_length=255,
         blank=True,
     )

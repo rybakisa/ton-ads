@@ -7,42 +7,39 @@ const BN = TonWeb.utils.BN;
 const toNano = TonWeb.utils.toNano;
 
 
-async function createChannel(platformSeedBase64, advertiserSeedBase64) {
+async function createChannel(advertiserMnemonic, platformMnemonic) {
    // TON init
-   const providerUrl = 'https://testnet.toncenter.com/api/v2/jsonRPC'; // TON HTTP API url. Use this url for testnet
-   const apiKey = '7eb4b0942f623ae1722efcac64ce858205b7f22acf761bc09efd61938e6937bf'; // Obtain your API key in https://t.me/tontestnetapibot
-   const tonweb = new TonWeb(new TonWeb.HttpProvider(providerUrl, {apiKey})); // Initialize TON SDK
+   const providerUrl = 'https://testnet.toncenter.com/api/v2/jsonRPC';
+   const apiKey = '7eb4b0942f623ae1722efcac64ce858205b7f22acf761bc09efd61938e6937bf';
+   const tonweb = new TonWeb(new TonWeb.HttpProvider(providerUrl, {apiKey}));
 
    // Create Key Pairs
-   const platformSeed = TonWeb.utils.base64ToBytes(platformSeedBase64); // A's private (secret) key
-   const platformKeyPair = tonweb.utils.keyPairFromSeed(platformSeed); // Obtain key pair (public key and private key)
-
-   const advertiserSeed = TonWeb.utils.base64ToBytes(advertiserSeedBase64); // B's private (secret) key
-   const advertiserKeyPair = tonweb.utils.keyPairFromSeed(advertiserSeed); // Obtain key pair (public key and private key)
+   const advertiserKeyPair = await tonMnemonic.mnemonicToKeyPair(advertiserMnemonic.split(' '));
+   const platformKeyPair = await tonMnemonic.mnemonicToKeyPair(platformMnemonic.split(' '));
 
    // Create Wallets
-   const platformWallet = tonweb.wallet.create({
-         publicKey: platformKeyPair.publicKey
-   });
-   const platformWalletAddress = await platformWallet.getAddress(); // address of this wallet in blockchain
-
    const advertiserWallet = tonweb.wallet.create({
          publicKey: advertiserKeyPair.publicKey
    });
-   const advertiserWalletAddress = await advertiserWallet.getAddress(); // address of this wallet in blockchain
+   const advertiserWalletAddress = await advertiserWallet.getAddress();
+
+   const platformWallet = tonweb.wallet.create({
+         publicKey: platformKeyPair.publicKey
+   });
+   const platformWalletAddress = await platformWallet.getAddress();
 
    // Channel initial configuration
    const channelInitState = {
-         balanceA: toNano('1'), // A's initial balance in Toncoins. Next A will need to make a top-up for this amount
-         balanceB: toNano('2'), // B's initial balance in Toncoins. Next B will need to make a top-up for this amount
-         seqnoA: new BN(0), // initially 0
-         seqnoB: new BN(0)  // initially 0
+         balanceA: toNano('1'),
+         balanceB: toNano('0'),
+         seqnoA: new BN(0),
+         seqnoB: new BN(0)
    };
 
    const channelConfig = {
-         channelId: new BN(124), // Channel ID, for each new channel there must be a new ID
-         addressA: platformWalletAddress, // A's funds will be withdrawn to this wallet address after the channel is closed
-         addressB: advertiserWalletAddress, // B's funds will be withdrawn to this wallet address after the channel is closed
+         channelId: new BN(555), // Channel ID, for each new channel there must be a new ID
+         addressA: advertiserWalletAddress, // A's funds will be withdrawn to this wallet address after the channel is closed
+         addressB: platformWalletAddress, // B's funds will be withdrawn to this wallet address after the channel is closed
          initBalanceA: channelInitState.balanceA,
          initBalanceB: channelInitState.balanceB
    }
@@ -58,39 +55,68 @@ async function createChannel(platformSeedBase64, advertiserSeedBase64) {
    const channelAddressString = await channelAddress.toString(true, true, true)
    console.log('channelAddress =', channelAddressString);
 
+   const fromAdvertiser = channel.fromWallet({
+         wallet: advertiserWallet,
+         secretKey: advertiserKeyPair.secretKey
+   });
+
+   try {
+         let deployed = await fromAdvertiser.deploy().send(toNano('1'));
+         console.log(deployed)
+   } catch (error) {
+         console.error(error);
+   }
+
+   console.log(await channel.getChannelState());
+   console.log(await channel.getData());
+
    return channelAddressString
 }
 
 
-router.get('/start/:advertiser_id/:platform_id/:contract_id', async function(req, res) {
-   let platformSeedBase64;
-   let advertiserSeedBase64;
+router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async function(req, res) {
+   let advertiserMnemonic;
+   let platformMnemonic;
 
    try {
-      const response = await axios.get('http://192.168.100.14:8080/api/platforms/' + req.params.platform_id);
-      platformSeedBase64 = response.data.profile.ton_account_seed
-      console.log(platformSeedBase64);
+      const response = await axios.get('http://localhost:8000/api/advertisers/' + req.params.advertiser_id);
+      advertiserMnemonic = response.data.profile.ton_account_mnemonic
+      console.log(advertiserMnemonic);
    } catch (error) {
       console.error(error);
    }
 
    try {
-      const response = await axios.get('http://192.168.100.14:8080/api/advertisers/' + req.params.advertiser_id);
-      advertiserSeedBase64 = response.data.profile.ton_account_seed
-      console.log(advertiserSeedBase64);
+      const response = await axios.get('http://localhost:8000/api/platforms/' + req.params.platform_id);
+      platformMnemonic = response.data.profile.ton_account_mnemonic
+      console.log(platformMnemonic);
    } catch (error) {
       console.error(error);
    }
 
-   res.send(
-      await createChannel(
-         platformSeedBase64,
-         advertiserSeedBase64
-      )
-   );
+   let channelAddress = await createChannel(
+         advertiserMnemonic,
+         platformMnemonic
+   )
 
-   // TODO: update contract on backend
+   let response;
+   try {
+      response = await axios.patch(
+         'http://localhost:8000/api/contracts/' + req.params.contract_id + '/',
+         {
+            "state": "ACTIVE",
+            "payment_channel_address": channelAddress,
+            "campaign": req.params.contract_id
+         }
+      );
+   } catch (error) {
+      response = error
+      console.error(error);
+   }
+
+   res.send(response)
 });
+
 
 
 router.get('/click/:banner_id', function(req, res){

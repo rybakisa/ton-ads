@@ -49,6 +49,12 @@ router.register(
     ]
 )
 
+router.register(
+    r'contracts',
+    ContractViewSet,
+    basename='contract',
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
