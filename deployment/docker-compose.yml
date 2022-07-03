@@ -32,6 +32,15 @@ services:
       - backend
     restart: always
 
+  payments:
+    build:
+      context: ../
+      dockerfile: deployment/payments/Dockerfile
+    networks:
+      - ton_ads_network
+    depends_on:
+      - backend
+
   db:
     image: "postgres:13-alpine"
     env_file:

@@ -30,4 +30,5 @@ USER root
 COPY deployment/frontend/config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY deployment/frontend/config/nginx/cors.conf /etc/nginx/cors.conf
 COPY deployment/frontend/config/nginx/proxy.conf /etc/nginx/proxy.conf
+COPY deployment/frontend/config/nginx/proxy_payments.conf /etc/nginx/proxy_payments.conf
 COPY deployment/frontend/config/nginx/ton_ads.nginx.conf /etc/nginx/conf.d/default.conf

@@ -1,2 +1,4 @@
 Django==4.0.5
 psycopg2-binary
+djangorestframework
+drf-extensions
