@@ -26,4 +26,14 @@
 
 .website-banner-link {
     height: fit-content;
+    transition: .1s ease-in-out;
+}
+
+.website-banner-link:hover {
+    transform: scale(.98);
+}
+
+.website-banner-link:active {
+    transform: scale(.95);
+    transition: none;
 }

@@ -74,7 +74,7 @@ const Landing = () => {
                 </div>
                 <div className='button-block'>
                     <Button link='https://www.figma.com/proto/rcZpobTcAhzshogwWra53t/TON?page-id=9%3A142&node-id=15%3A297&viewport=675%2C595%2C0.26&scaling=min-zoom' text='Figma Prototype' secondary />
-                    <Button link='#fa' text='Explanation Video' secondary />
+                    <Button link='https://youtu.be/m8q9lQIs6JU' text='Explanation Video' secondary />
                     <Button link='https://github.com/rybakisa/ton-ads' text='GitHub Repo' secondary />
                     <Button link='/usertypes' text='Launch Demo App' primary />
                 </div>
