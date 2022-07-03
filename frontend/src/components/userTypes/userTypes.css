@@ -1,16 +1,36 @@
 .user-type--wrap {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 8px;
     border-radius: 32px;
     background: var(--bright-background);
     margin: auto;
-    margin-top: 240px;
+    margin-top: 180px;
     padding: 24px;
     width: fit-content;
     justify-content: center;
     align-items: center;
 
+}
+
+.headline--user-type {
+    margin-bottom: 24px;
+}
+
+.user-type--wrap a {
+    width: 100%;
+}
+
+.user-type--wrap a .button--primary {
+    width: 100%;
+}
+
+.user-type--wrap a .button--secondary {
+    width: 100%;
+}
+
+.user-type--wrap a .button--tretiary {
+    width: 100%;
 }
 
 .user-type--button {

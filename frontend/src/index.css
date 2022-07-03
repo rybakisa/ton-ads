@@ -18,7 +18,13 @@
   font-feature-settings: "lnum";
 }
 
-
+button {
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -36,7 +42,6 @@ button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px 24px;
   border-radius: 16px;
   cursor: pointer;
   font-weight: 700;

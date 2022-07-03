@@ -3,6 +3,7 @@
     color: var(--text-color-white);
     transition: var(--default-transition);
     border: 2px solid var(--ton-blue);
+    padding: 16px 24px;
 }
 
 .button--primary:hover {
@@ -24,6 +25,7 @@
     transition: var(--default-transition);
     border: 2px solid var(--ton-blue);
     box-sizing: border-box;
+    padding: 16px 24px;
 }
 
 .button--secondary:hover {
@@ -46,6 +48,7 @@
     color: var(--text-color-black);
     transition: var(--default-transition);
     border: 2px solid var(--white);
+    padding: 16px 24px;
 }
 
 .button--tretiary:hover {
