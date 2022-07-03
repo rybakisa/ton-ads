@@ -1,0 +1,29 @@
+.website-background {
+    background: url('../../assets/samplePageScreenshot.png');
+    height: 1080px;
+    width: 100%;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    padding-left: 955px;
+    padding-top: 192px;
+}
+
+.website-banner {
+    background: url('../../assets/adImageAnother.png');
+    /* background-repeat: no-repeat;  */
+    width: 233px;
+    height: 328px;
+    background-position: center;
+    background-origin: border-box;
+    /* z-index: 5; */
+}
+
+.ad-placement {
+}
+
+.website-banner-link {
+    height: fit-content;
+}

@@ -12,7 +12,7 @@ function HeaderView() {
 
 const Header = () => {
     return (
-        <header className={HeaderView().includes('/landing')  ? 'element-hidden' : null}>
+        <header className={HeaderView().includes('/landing') || HeaderView().includes('/new-york-times') ? 'element-hidden' : null}>
             <div className='header--contents-wrap'>
                 <div className='header--logo-wrap'>
                     <Link to='/usertypes'><PrjLogo className='header--logo'/></Link>

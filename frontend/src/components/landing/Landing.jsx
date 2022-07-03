@@ -34,7 +34,7 @@ const Landing = () => {
                 </div>
                 <div className='screen-center background-darker' id='#buy'>
                     <div className='block-one'>
-                        <div className='headline-two centered'>Getting Rid of the Middle Agents</div>
+                        <div className='headline-two centered'>Getting Rid of Middle Agents</div>
                         <div className='pseudo-paragraph centered'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />Lorem Ipsum has been the industry's standard dummy.</div>
                     </div>
                     <div className='image-two-wrapper'><ImageTwo /></div>
@@ -54,7 +54,7 @@ const Landing = () => {
                 </div>
                 <div className='screen-center'>
                     <div className='block-one'>
-                        <div className='headline-two centered'>...Or Choose Yourself</div>
+                        <div className='headline-two centered'>...Or Choose Them Yourself</div>
                         <div className='pseudo-paragraph centered'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br /> Lorem Ipsum has been the industry's standard dummy.</div>
                     </div>
                     <div className='image-six-wrapper'><ImageSix /></div>
@@ -75,7 +75,7 @@ const Landing = () => {
                 <div className='button-block'>
                     <Button link='https://www.figma.com/proto/rcZpobTcAhzshogwWra53t/TON?page-id=9%3A142&node-id=15%3A297&viewport=675%2C595%2C0.26&scaling=min-zoom' text='Figma Prototype' secondary />
                     <Button link='#fa' text='Explanation Video' secondary />
-                    <Button link='#fa' text='GitHub Repo' secondary />
+                    <Button link='https://github.com/rybakisa/ton-ads' text='GitHub Repo' secondary />
                     <Button link='/usertypes' text='Launch Demo App' primary />
                 </div>
             </div>

@@ -16,6 +16,7 @@ import Contracts from './components/contracts/Contracts';
 import AdMarket from './components/adMarket/AdMarket';
 import UserTypes from './components/userTypes/UserTypes';
 import Landing from './components/landing/Landing';
+import SampleAdPage from './components/sampleAdPage/SampleAdPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
     <Header />
     <Routes>
       <Route path="/landing" element={<Landing />} />
+      <Route path="/new-york-times" element={<SampleAdPage />} />
       <Route path="/usertypes" element={<UserTypes />} />
       <Route path="/advertiser/profile" element={<Profile />} />
       <Route path="/advertiser/adMarket" element={<AdMarket />} />
