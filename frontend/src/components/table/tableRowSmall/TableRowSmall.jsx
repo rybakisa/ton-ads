@@ -4,7 +4,7 @@ import TableSmallSegment from '../TableSmallSegment'
 import './tableRowSmall.css'
 import { useState } from 'react';
 import PopUp from '../../popUp/PopUp';
-
+// onClick={() => setButtonPopup(true)}
 const TableRowSmall = () => {
     const [buttonPopup, setButtonPopup] = useState(false);
     return (
@@ -17,7 +17,7 @@ const TableRowSmall = () => {
                 <TableSmallSegment text='Value' />
                 <TableSmallSegment text='Value' isTonValue />
                 <TableSmallSegment text='State' bold yellow />
-                <button onClick={() => setButtonPopup(true)}><TextArrowButton link='#435' text='Abort' /></button>
+                <button><TextArrowButton link='https://testnet.tonscan.org/address/EQCm-ZDmQr3b5lg2K6CiHmUFA8rimAVuBcZqB5r_TlWBD9I9' text='TON Scan' /></button>
             </div>
             <PopUp trigger={buttonPopup} setTrigger={setButtonPopup} />
         </div>

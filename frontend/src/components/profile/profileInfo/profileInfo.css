@@ -23,3 +23,10 @@
     padding: 0px;
     gap: 12px;
 }
+
+.profile-info--left--buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4px;
+}
