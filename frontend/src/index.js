@@ -20,10 +20,13 @@ import SampleAdPage from './components/sampleAdPage/SampleAdPage';
 import PlatformProfile from './components/platformProfile/PlatformProfile';
 import Placements from './components/placements/Placements';
 import PlatformContracts from './components/platformContracts/PlatformContracts';
+import PopUp from './components/popUp/PopUp';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    <App />
     <Header />
     <Routes>
     <Route path="" element={<Landing />} />
