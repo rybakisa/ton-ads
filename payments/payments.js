@@ -6,6 +6,8 @@ const TonWeb = require('tonweb');
 const BN = TonWeb.utils.BN;
 const toNano = TonWeb.utils.toNano;
 
+const BACKEND_HOST = 'http://backend:8000';
+
 
 async function createChannel(advertiserMnemonic, platformMnemonic) {
    // TON init
@@ -79,7 +81,7 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    let platformMnemonic;
 
    try {
-      const response = await axios.get('http://localhost:8000/api/advertisers/' + req.params.advertiser_id);
+      const response = await axios.get(BACKEND_HOST + '/api/advertisers/' + req.params.advertiser_id);
       advertiserMnemonic = response.data.profile.ton_account_mnemonic
       console.log(advertiserMnemonic);
    } catch (error) {
@@ -87,7 +89,7 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    }
 
    try {
-      const response = await axios.get('http://localhost:8000/api/platforms/' + req.params.platform_id);
+      const response = await axios.get(BACKEND_HOST + '/api/platforms/' + req.params.platform_id);
       platformMnemonic = response.data.profile.ton_account_mnemonic
       console.log(platformMnemonic);
    } catch (error) {
@@ -102,7 +104,7 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    let response;
    try {
       response = await axios.patch(
-         'http://localhost:8000/api/contracts/' + req.params.contract_id + '/',
+         BACKEND_HOST + '/api/contracts/' + req.params.contract_id + '/',
          {
             "state": "ACTIVE",
             "payment_channel_address": channelAddress,
