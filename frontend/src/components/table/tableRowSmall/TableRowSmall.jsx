@@ -8,12 +8,12 @@ const TableRowSmall = () => {
         <div className='table-row-small'>
             <TableSmallSegment text='Company Name' avatar='fgds.jpg' bold />
             <div className='table-row-small--right'>
-                <TableSmallSegment text='Hello World' />
-                <TableSmallSegment text='Hello World' />
-                <TableSmallSegment text='Hello World' />
-                <TableSmallSegment text='Hello World' />
-                <TableSmallSegment text='Hello World' isTonValue />
-                <TableSmallSegment text='Hello World' bold yellow />
+                <TableSmallSegment text='Value' />
+                <TableSmallSegment text='Value' />
+                <TableSmallSegment text='Value' />
+                <TableSmallSegment text='Value' />
+                <TableSmallSegment text='Value' isTonValue />
+                <TableSmallSegment text='State' bold yellow />
                 <TextArrowButton link='#435' text='Abort'/>
             </div>
         </div>
