@@ -1,0 +1,18 @@
+.user-type--wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 32px;
+    background: var(--bright-background);
+    margin: auto;
+    margin-top: 240px;
+    padding: 24px;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.user-type--button {
+    width: 100%;
+}

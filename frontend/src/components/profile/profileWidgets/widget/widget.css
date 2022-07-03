@@ -1,0 +1,20 @@
+.widget--wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 10px;
+    height: 300px;
+    background: var(--bright-background);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    border-radius: 32px;font-weight: 700;
+font-size: 18px;
+line-height: 23px;
+}
+
+.white-background {
+    background: var(--white);
+}
