@@ -4,10 +4,10 @@ import Toggle from '../../buttons/toggle/Toggle'
 import TableBigSegment from '../TableBigSegment'
 import './tableRowLarge.css'
 
-const TableRowLarge = () => {
+const TableRowLarge = (props) => {
     return (
         <div className='table-row-large--wrap'>
-            <TableBigSegment headline='Campaign Name' value='Donuts & Donate' />
+            <TableBigSegment headline={props.subheadline} value={props.name} />
             <div className='table-row-large--right-wrap'>
                 <TableBigSegment headline='Automatch' interactive= <TextArrowButtonBig link='#a' text='Triggers' /> />
                 <TableBigSegment headline='　' interactive=<Toggle /> />

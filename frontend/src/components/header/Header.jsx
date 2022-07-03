@@ -27,9 +27,9 @@ const Header = () => {
                 </div>
                 <div className={'header--buttons-wrap ' + (!HeaderView().includes('/platform')  ? 'element-hidden' : null)}>
                     {/* <TabButton text='Offers' link='/platform/offers' /> */}
-                    <TabButton text='Contracts' link='/platform/platformcontracts' />
+                    <TabButton text='Contracts' link='/platform/contracts' />
                     <TabButton text='Platforms' link='/platform/platforms' />
-                    <TabButton text='Profile' link='/platform/platformprofile' />
+                    <TabButton text='Profile' link='/platform/profile' />
                 </div>
             </div>
         </header>
