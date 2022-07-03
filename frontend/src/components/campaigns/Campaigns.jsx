@@ -1,8 +1,8 @@
 import React from 'react'
 import TableRowLarge from '../table/tableRowLarge/TableRowLarge'
-import './adSettings.css'
+import './campaigns.css'
 
-const AdSettings = () => {
+const Campaigns = () => {
   return (
     <div>
       <h1 className='ad-settings--wrap'><b>Ad Campaign Settings</b></h1>
@@ -16,4 +16,4 @@ const AdSettings = () => {
   )
 }
 
-export default AdSettings
+export default Campaigns

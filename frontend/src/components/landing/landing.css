@@ -1,0 +1,144 @@
+.header-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0px;
+    margin: auto;
+    max-width: 1160px;
+    margin-top: 40px;
+    margin-bottom: 92px;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.logo-style {
+    width: 177px;
+    height: 44px;
+}
+
+
+.screens-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 160px;
+    padding: 12px 0px;
+    margin: auto;
+    max-width: 1160px;
+}
+
+.screen-lr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+}
+
+.headline-one {
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 90px;
+    color: var(--dark-background);
+}
+
+.headline-two {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 80px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--dark-background);
+}
+
+.blue {
+    color: var(--ton-blue);
+}
+
+
+.background-darker {
+    background-color: var(--bright-background);
+    border-radius: 32px;
+    padding: 46px 20px;
+}
+
+.pseudo-paragraph {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--bright-p);
+    max-width: 600px;
+}
+
+.right-side {
+    width: 464px;
+    height: 469.37px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.25);
+    pointer-events: none;
+}
+
+.centered {
+    text-align: center;
+    width: fit-content;
+    max-width: fit-content;
+    margin: auto;
+}
+
+.block-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    width: 100%;
+}
+
+.image-two-wrapper {
+    margin-top: 37px;
+    width: 943px;
+    height: 213px;
+}
+
+.screen-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.image-six-wrapper {
+    margin-top: 37px;
+}
+
+.image-seven-wrapper {
+    margin-top: 12px;
+}
+
+.button-block {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    margin: auto;
+    margin-bottom: 160px;
+}

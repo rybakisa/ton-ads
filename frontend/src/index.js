@@ -6,24 +6,33 @@ import {
   Route,
 } from "react-router-dom";
 import './index.css';
+import './variables.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Profile from './components/profile/Profile';
 import Header from './components/header/Header';
-import AdSettings from './components/adSettings/AdSettings';
+import Campaigns from './components/campaigns/Campaigns';
 import Contracts from './components/contracts/Contracts';
 import AdMarket from './components/adMarket/AdMarket';
+import UserTypes from './components/userTypes/UserTypes';
+import Landing from './components/landing/Landing';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <Header />
+    <Header />
     <Routes>
-      <Route path="/profile" element={<Profile />} />
-      <Route path="adMarket" element={<AdMarket />} />
-      <Route path="contracts" element={<Contracts />} />
-      <Route path="adSettings" element={<AdSettings />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/landing" element={<Landing />} />
+      <Route path="/usertypes" element={<UserTypes />} />
+      <Route path="/advertiser/profile" element={<Profile />} />
+      <Route path="/advertiser/adMarket" element={<AdMarket />} />
+      <Route path="/advertiser/contracts" element={<Contracts />} />
+      <Route path="/advertiser/campaigns" element={<Campaigns />} />
+      <Route path="/advertiser/profile" element={<Profile />} />
+      {/* <Route path="/platform/profile" element={<PlatformProfile />} />
+      <Route path="/platform/adMarket" element={<Placement />} />
+      <Route path="/platform/contracts" element={<PlatformContracts />} />
+      <Route path="/platform/campaigns" element={<Offers />} /> */}
     </Routes>
   </BrowserRouter>
 );

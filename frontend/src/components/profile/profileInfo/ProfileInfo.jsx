@@ -11,7 +11,7 @@ const ProfileInfo = () => {
             <AddressCopyButton walletAddress='EQCmvIQ561RsheBUoEpWj6J3EL8uba0HOXbOB4NgFSUa2YPh'/>
             </div>
             <div className='profile-info--right'>
-            <Card headline='Amount of TON' value='586,436,345' isTonValue/>
+            <Card headline='Balance' value='586,436,345' isTonValue/>
             <Card headline='Spent this Month' value='36,345' isTonValue/>
             </div>
         </div>

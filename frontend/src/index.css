@@ -9,8 +9,8 @@
   list-style: none;
   text-decoration: none;
   font-family: 'Mulish', sans-serif;
-  background-color: var(--color-bg);
-  color: var(--text-color);
+  /* background-color: var(--white); */
+  color: var(--text-color-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-feature-settings: "lnum";
@@ -18,39 +18,7 @@
   font-feature-settings: "lnum";
 }
 
-:root {
-  --black: black;
-  --dark-background: #232328;
-  --dark-button: #303035;
-  --dark-button-hov: #3E3E42;
-  --dark-button-act: #2A2A2F;
-  --dark-p: #BDBDBF;
-  --white: white;
-  --white-hov: #F0F8FC;
-  --white-act: #D6EEFA;
-  --bright-background: #F7F9FB;
-  --bright-p: #728A96;
-  --text-color-black: black;
-  --text-color-white: white;
-  --ton-blue: #0088CC;
-  --ton-blue-hov: #0197E2;
-  --ton-blue-act: #076C9F;
-  --warning: #E36262;
-  --warning-hov: #E36262;
-  --warning-act: #E36262;
-  --attention: #E49043;
-  --attention-hov: #E49043;
-  --attention-act: #E49043;
-  --accepted: #15AE52;
-  --accepted-hov: #15AE52;
-  --accepted-act: #15AE52;
-  --default-transition: .1s linear;
-  --no-transition: 0s;
-  --tab-shadow: inset 0 -2px 0;
-  --max-width: 1160px;
-  --max-width-plus: 1176px;
 
-}
 
 html {
   scroll-behavior: smooth;

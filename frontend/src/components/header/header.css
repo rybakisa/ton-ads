@@ -49,3 +49,7 @@ header {
 .header--logo {
     fill: var(--ton-blue);
 }
+
+.element-hidden {
+    display: none;
+}

@@ -1,4 +1,5 @@
 import './index.css';
+import './variables.css';
 import WalletConnection from './components/WalletConnection.js';
 import Button from './components/buttons/Button';
 import TabButton from './components/buttons/TabButton';
