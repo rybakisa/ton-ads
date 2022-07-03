@@ -25,4 +25,4 @@ Deployment and build instructions provided in [`deployment` directory](https://g
 
 ## Contributors
 * [@rybakisa](https://github.com/rybakisa) 📖
-* [@cainwatson](https://github.com/Grang2k) 🐛
+* [@Grang2k](https://github.com/Grang2k) 🐛
