@@ -4,6 +4,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 import './index.css';
 import './variables.css';
@@ -22,15 +23,21 @@ import Placements from './components/placements/Placements';
 import PlatformContracts from './components/platformContracts/PlatformContracts';
 import PopUp from './components/popUp/PopUp';
 import App from './App';
+import { useLocation } from 'react-router-dom'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+function HeaderView() {
+  const location = useLocation();
+  return location.pathname
+}
 root.render(
   <BrowserRouter>
     <App />
     <Header />
     <Routes>
-    <Route path="" element={<Landing />} />
       <Route path="/landing" element={<Landing />} />
+      <Route path="/" element={<Navigate replace to="/landing" />} />
       <Route path="/new-york-times" element={<SampleAdPage />} />
       <Route path="/usertypes" element={<UserTypes />} />
       <Route path="/advertiser/profile" element={<Profile />} />
