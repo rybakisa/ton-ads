@@ -22,6 +22,62 @@ function createWallet(tonWebObject, keyPair) {
     });
 }
 
+function getFromWalletObject(channel, wallet, keyPair) {
+    return channel.fromWallet({
+        wallet: wallet,
+        secretKey: keyPair.secretKey,
+    });
+}
+
+async function getChannelObject(tonweb, channelConfig, advertiserKeyPair, platformKeyPair) {
+    const channel = tonweb.payments.createChannel({
+        ...channelConfig,
+        isAdvertiser: true,
+        myKeyPair: advertiserKeyPair,
+        hisPublicKey: platformKeyPair.publicKey,
+    });
+
+    return channel;
+}
+
+async function deployChannel(fromWallet) {
+    let deployed;
+
+    try {
+        deployed = await fromWallet.deploy().send(toNano('1'));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function topUpChannel(fromWallet, channelInitState) {
+    let toped_up;
+    
+    try {
+        toped_up = await fromWallet
+            .topUp({
+                coinsAdvertiser: channelInitState.balanceAdvertiser,
+                coinsPlatform: new BN(0)
+            })
+            .send(
+                channelInitState.balanceAdvertiser.add(toNano('0.05'))
+            ); // +0.05 TON to network fees
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function initChannel(fromWallet, channelInitState) {
+    let initialized;
+
+    try {
+        initialized = await fromWallet.init(channelInitState).send(toNano('0.05'));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 async function createChannel(advertiserMnemonic, platformMnemonic) {
     // TON init
     const tonweb = await initTonWeb();
@@ -33,56 +89,42 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     // Create Wallets
     const advertiserWallet = createWallet(tonweb, advertiserKeyPair);
     const advertiserWalletAddress = await advertiserWallet.getAddress();
-    console.log(advertiserWalletAddress.toString(true, true, true));
 
     const platformWallet = createWallet(tonweb, platformKeyPair);
     const platformWalletAddress = await platformWallet.getAddress();
-    console.log(platformWalletAddress.toString(true, true, true));
 
     // Channel initial configuration
     const channelInitState = {
-        balanceA: toNano('0.5'),
-        balanceB: toNano('0'),
-        seqnoA: new BN(0),
-        seqnoB: new BN(0),
+        balanceAdvertiser: toNano('0.5'),
+        balancePlatform: toNano('0'),
+        seqnoAdvertiser: new BN(0),
+        seqnoPlatform: new BN(0),
     };
 
     const channelConfig = {
         channelId: new BN(123), // Channel ID, for each new channel there must be a new ID
-        addressA: advertiserWalletAddress, // A's funds will be withdrawn to this wallet address after the channel is closed
-        addressB: platformWalletAddress, // B's funds will be withdrawn to this wallet address after the channel is closed
-        initBalanceA: channelInitState.balanceAdvertiser,
-        initBalanceB: channelInitState.balancePlatform,
+        addressAdvertiser: advertiserWalletAddress, // A's funds will be withdrawn to this wallet address after the channel is closed
+        addressPlatform: platformWalletAddress, // B's funds will be withdrawn to this wallet address after the channel is closed
+        initBalanceAdvertiser: channelInitState.balanceAdvertiser,
+        initBalancePlatform: channelInitState.balancePlatform,
     };
 
     // Create a payment channel object
-    const channel = tonweb.payments.createChannel({
-        ...channelConfig,
-        isA: true,
-        myKeyPair: advertiserKeyPair,
-        hisPublicKey: platformKeyPair.publicKey,
-    });
-    const channelAddress = await channel.getAddress(); // address of this payment channel smart-contract in blockchain
-    const channelAddressString = await channelAddress.toString(true, true, true);
-    console.log('channelAddress =', channelAddressString);
+    const channel = await getChannelObject(tonweb, channelConfig, advertiserKeyPair, platformKeyPair);
+    const fromAdvertiser = getFromWalletObject(channel, advertiserWallet, advertiserKeyPair);
 
-    const fromAdvertiser = channel.fromWallet({
-        wallet: advertiserWallet,
-        secretKey: advertiserKeyPair.secretKey,
-    });
+    await deployChannel(fromAdvertiser);
+    await topUpChannel(fromAdvertiser, channelInitState);
+    await initChannel(fromAdvertiser, channelInitState);
 
-    // Deploy channel
-    try {
-        let deployed = await fromAdvertiser.deploy().send(toNano('1'));
-        console.log(deployed);
-    } catch (error) {
-        console.error(error);
-    }
-
-    console.log(await channel.getChannelState());
-    console.log(await channel.getData());
-
+    const channelAddressString = await channel.getAddress().toString(true, true, true);
     return channelAddressString;
 }
+
+async function signState(state) {
+    const signature = await channel.signState(state);
+    return signature;
+}
+
 
 module.exports = {createChannel}
