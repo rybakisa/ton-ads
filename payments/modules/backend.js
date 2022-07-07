@@ -5,7 +5,7 @@ const BACKEND_HOST = 'http://127.0.0.1:8000';
 
 async function getAdvertiserMnemonic(advertiserId) {
     let response;
-    
+
     try {
         response = await axios.get(
             `${BACKEND_HOST}/api/advertisers/${advertiserId}/`
@@ -20,7 +20,7 @@ async function getAdvertiserMnemonic(advertiserId) {
 
 async function getPlatformMnemonic(platformId) {
     let response;
-    
+
     try {
         response = await axios.get(
             `${BACKEND_HOST}/api/platforms/${platformId}/`
@@ -37,20 +37,19 @@ async function patchContract(channelAddress, contractId, campaignId) {
     let response;
 
     try {
-       response = await axios.patch(
-          `${BACKEND_HOST}/api/contracts/${contractId}/`,
-          {
-             "state": "ACTIVE",
-             "payment_channel_address": channelAddress,
-             "campaign": campaignId,
-          }
-       );
+        response = await axios.patch(
+            `${BACKEND_HOST}/api/contracts/${contractId}/`,
+            {
+                "state": "ACTIVE",
+                "payment_channel_address": channelAddress,
+                "campaign": campaignId,
+            }
+        );
     } catch (error) {
-       response = error;
-       console.error(error);
+        response = error;
+        console.error(error);
     }
 
-    console.error(response);
     return response.data;
 }
 

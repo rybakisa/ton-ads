@@ -9,7 +9,7 @@ const TON_PROVIDER_API_URL = 'https://testnet.toncenter.com/api/v2/jsonRPC';
 
 
 async function initTonWeb() {
-    return new TonWeb(new TonWeb.HttpProvider(TON_PROVIDER_API_URL, {apiKey: TON_API_KEY})); 
+    return new TonWeb(new TonWeb.HttpProvider(TON_PROVIDER_API_URL, { apiKey: TON_API_KEY }));
 }
 
 async function createKeyPairFromMnemonic(mnemomic) {
@@ -52,7 +52,7 @@ async function deployChannel(fromWallet) {
 
 async function topUpChannel(fromWallet, channelInitState) {
     let toped_up;
-    
+
     try {
         toped_up = await fromWallet
             .topUp({
@@ -127,4 +127,4 @@ async function signState(state) {
 }
 
 
-module.exports = {createChannel}
+module.exports = { createChannel }
