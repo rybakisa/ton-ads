@@ -30,14 +30,12 @@ function getFromWalletObject(channel, wallet, keyPair) {
 }
 
 async function getChannelObject(tonweb, channelConfig, advertiserKeyPair, platformKeyPair) {
-    const channel = tonweb.payments.createChannel({
+    return tonweb.payments.createChannel({
         ...channelConfig,
         isAdvertiser: true,
         myKeyPair: advertiserKeyPair,
         hisPublicKey: platformKeyPair.publicKey,
     });
-
-    return channel;
 }
 
 async function deployChannel(fromWallet) {
@@ -94,6 +92,7 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     const platformWalletAddress = await platformWallet.getAddress();
 
     // Channel initial configuration
+    // TODO: This function must only receive configuration objects from contract parameters from backend
     const channelInitState = {
         balanceAdvertiser: toNano('0.5'),
         balancePlatform: toNano('0'),
@@ -117,7 +116,8 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     await topUpChannel(fromAdvertiser, channelInitState);
     await initChannel(fromAdvertiser, channelInitState);
 
-    const channelAddressString = await channel.getAddress().toString(true, true, true);
+    const channelAddress = await channel.getAddress();
+    const channelAddressString = channelAddress.toString(true, true, true);
     return channelAddressString;
 }
 
