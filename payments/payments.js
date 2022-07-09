@@ -20,20 +20,23 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
 });
 
 
-
-router.get('/click/:banner_id', function (req, res) {
+router.get('/click/:contract_id', async function (req, res) {
+   // get contract data
+   let contract_data = await backend.getContractData(req.params.contract_id);
+   console.log(contract_data);
    // get channel from backend
-   // update channel state
+   // create new channel state
+   // sign new channel state
    // send update to backend
-   res.send('Update channel with banner with id=' + req.params.banner_id);
+   res.send(contract_data);
 });
 
 
-router.get('/finalise/:banner_id', function (req, res) {
+router.get('/finalise/:contract_id', function (req, res) {
    // get channel from backend
    // finalize channel
    // send update to backend
-   res.send('Finalise channel with banner with id=' + req.params.banner_id);
+   res.send('Finalise channel with banner with id=' + req.params.contract_id);
 });
 
 

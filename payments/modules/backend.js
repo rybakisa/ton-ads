@@ -53,8 +53,24 @@ async function patchContract(channelAddress, contractId, campaignId) {
     return response.data;
 }
 
+async function getContractData(contractId) {
+    let response;
+
+    try {
+        response = await axios.get(
+            `${BACKEND_HOST}/api/contracts/${contractId}/`,
+        );
+    } catch (error) {
+        response = error;
+        console.error(error);
+    }
+
+    return response.data;
+}
+
 module.exports = {
     getAdvertiserMnemonic,
     getPlatformMnemonic,
     patchContract,
+    getContractData,
 }
