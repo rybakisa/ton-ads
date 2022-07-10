@@ -9,12 +9,12 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    let advertiserMnemonic = await backend.getAdvertiserMnemonic(req.params.advertiser_id);
    let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
 
-   let channelAddress = await ton.createChannel(
+   let channel = await ton.createChannel(
       advertiserMnemonic,
       platformMnemonic,
    );
 
-   let response = await backend.patchContract(channelAddress, req.params.contract_id, req.params.campaign_id);
+   let response = await backend.patchContract(channel, req.params.contract_id, req.params.campaign_id);
 
    res.send(response);
 });

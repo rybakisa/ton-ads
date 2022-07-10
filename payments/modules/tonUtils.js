@@ -75,6 +75,26 @@ async function initChannel(fromWallet, channelInitState) {
     }
 }
 
+// TODO: This function must only receive configuration objects from contract parameters from backend
+function createChannelInitState() {
+    return {
+        balanceAdvertiser: toNano('0.5'),
+        balancePlatform: toNano('0'),
+        seqnoAdvertiser: new BN(0),
+        seqnoPlatform: new BN(0),
+    };
+}
+
+function createChannelConfig(advertiserWalletAddress, platformWalletAddress, channelInitState) {
+    // TODO: This function must receive channelId from backend
+    return {
+        channelId: new BN(123),
+        addressAdvertiser: advertiserWalletAddress,
+        addressPlatform: platformWalletAddress,
+        initBalanceAdvertiser: channelInitState.balanceAdvertiser,
+        initBalancePlatform: channelInitState.balancePlatform,
+    };
+}
 
 async function createChannel(advertiserMnemonic, platformMnemonic) {
     // TON init
@@ -92,21 +112,8 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     const platformWalletAddress = await platformWallet.getAddress();
 
     // Channel initial configuration
-    // TODO: This function must only receive configuration objects from contract parameters from backend
-    const channelInitState = {
-        balanceAdvertiser: toNano('0.5'),
-        balancePlatform: toNano('0'),
-        seqnoAdvertiser: new BN(0),
-        seqnoPlatform: new BN(0),
-    };
-
-    const channelConfig = {
-        channelId: new BN(123), // Channel ID, for each new channel there must be a new ID
-        addressAdvertiser: advertiserWalletAddress, // A's funds will be withdrawn to this wallet address after the channel is closed
-        addressPlatform: platformWalletAddress, // B's funds will be withdrawn to this wallet address after the channel is closed
-        initBalanceAdvertiser: channelInitState.balanceAdvertiser,
-        initBalancePlatform: channelInitState.balancePlatform,
-    };
+    const channelInitState = createChannelInitState();
+    const channelConfig = createChannelConfig(advertiserWalletAddress, platformWalletAddress, channelInitState);
 
     // Create a payment channel object
     const channel = await getChannelObject(tonweb, channelConfig, advertiserKeyPair, platformKeyPair);
@@ -118,7 +125,10 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
 
     const channelAddress = await channel.getAddress();
     const channelAddressString = channelAddress.toString(true, true, true);
-    return channelAddressString;
+    const channel_data = {
+        'address': channelAddressString,
+    }
+    return channel_data;
 }
 
 async function signState(state) {

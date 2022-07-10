@@ -33,7 +33,7 @@ async function getPlatformMnemonic(platformId) {
     return response.data.profile.ton_account_mnemonic;
 }
 
-async function patchContract(channelAddress, contractId, campaignId) {
+async function patchContract(channel_data, contractId, campaignId) {
     let response;
 
     try {
@@ -41,7 +41,7 @@ async function patchContract(channelAddress, contractId, campaignId) {
             `${BACKEND_HOST}/api/contracts/${contractId}/`,
             {
                 "state": "ACTIVE",
-                "payment_channel_address": channelAddress,
+                "channel": channel_data,
                 "campaign": campaignId,
             }
         );
