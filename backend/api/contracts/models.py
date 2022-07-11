@@ -2,6 +2,7 @@ from django.db import models
 
 from placements.models import Placement
 from campaigns.models import Campaign
+from channels.models import Channel
 
 
 class ContractStates(models.TextChoices):
@@ -25,9 +26,11 @@ class Contract(models.Model):
         max_length=255,
         choices=ContractStates.choices,
     )
-    payment_channel_address = models.CharField(
-        max_length=255,
-        blank=True,
+    channel = models.OneToOneField(
+        Channel,
+        blank=False,
+        null=True,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
