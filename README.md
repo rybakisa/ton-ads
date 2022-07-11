@@ -6,18 +6,18 @@
 ![GitHub stars](https://img.shields.io/github/stars/rybakisa/ton-ads?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/rybakisa/ton-ads?style=social)
 
-![TON Ads Platform](https://github.com/rybakisa/ton-ads/blob/main/descriptionSrc/intro.png)
+![TON Ads Platform](https://github.com/rybakisa/ton-ads/blob/main/frontend/public/intro.png)
 
-An prototype for The Open Network's Hack-a-TON event.
+A prototype for The Open Network's Hack-a-TON event.
 TON Ads is a platform that connects advertisers and ad platforms unsing TON Payment Channels technology. It allows advertisers to buy ads from the platforms and platforms to sell their placeholders in peer-to-peer fashion. Buy ads from platforms or sell placeholders and earn money without middle parties. Lightning-quick speeds and billions of transactions with zero fees, on your terms.
 
 ## Projects structure
 
 Project consists of the following parts:
-* `backend` directory has an Django/DRF implementation of an API
-* `frontend` is a React.js SPA and landinf page.
-* `payments` is a Express.js API for serving TON Payment Channels interactions.
-* `deployment` directory holding building and deploying configurations. 
+* `backend` directory has a Django/DRF implementation of an API,
+* `frontend` is a React.js SPA and landing page,
+* `payments` is an Express.js API for serving TON Payment Channels interactions,
+* `deployment` directory holding building and deploying configurations.
 
 ## Installing
 
