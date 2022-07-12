@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const ton = require('./modules/tonUtils.js');
+const ton = require('./modules/ton/ton.js');
 const backend = require('./modules/backend.js');
 
 
@@ -9,12 +9,16 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    let advertiserMnemonic = await backend.getAdvertiserMnemonic(req.params.advertiser_id);
    let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
 
-   let channel = await ton.createChannel(
+   let channel_data = await ton.createChannel(
       advertiserMnemonic,
       platformMnemonic,
    );
 
-   let response = await backend.patchContract(channel, req.params.contract_id, req.params.campaign_id);
+   let response = await backend.patchContract(
+      channel_data,
+      req.params.contract_id,
+      req.params.campaign_id,
+   );
 
    res.send(response);
 });
