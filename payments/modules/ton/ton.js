@@ -6,16 +6,27 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     const { channel, fromAdvertiser } = await channels.createChannelObject(advertiserMnemonic, platformMnemonic);
 
     await channels.deployChannel(fromAdvertiser);
-    await channels.topUpChannel(fromAdvertiser, channels.getChannelInitState());
-    await channels.initChannel(fromAdvertiser, channels.getChannelInitState());
+    await channels.topUpChannel(fromAdvertiser, channels.getInitChannelState());
+    await channels.initChannel(fromAdvertiser, channels.getInitChannelState());
 
     const channelAddress = await channel.getAddress();
-    const channelAddressString = channelAddress.toString(true, true, true);
     const channel_data = {
-        'address': channelAddressString,
+        'address': channelAddress.toString(true, true, true),
     }
     return channel_data;
 }
+
+
+async function signChannelState(advertiserMnemonic, platformMnemonic) {
+    // Create a payment channel object
+    const { channel, fromAdvertiser } = await channels.createChannelObject(advertiserMnemonic, platformMnemonic);
+
+    const newState = channels.getNewChannelState();
+    const signature = await channel.signState(newState);
+
+    return { newState, signature };
+}
+
 
 async function finalizeChannel() {
     console.log('finalize channel');
@@ -24,5 +35,6 @@ async function finalizeChannel() {
 
 module.exports = {
     createChannel,
+    signChannelState,
     finalizeChannel,
 }

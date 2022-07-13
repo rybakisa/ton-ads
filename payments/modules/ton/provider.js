@@ -8,4 +8,6 @@ async function initTonWeb() {
     return new TonWeb(new TonWeb.HttpProvider(TON_PROVIDER_API_URL, { apiKey: TON_API_KEY }));
 }
 
-exports.initTonWeb = initTonWeb;
+module.exports = {
+    initTonWeb,
+}

@@ -4,12 +4,12 @@ const utils = require("./utils");
 
 
 // TODO: This function must only receive configuration objects from contract parameters from backend
-function getChannelInitState() {
+function getInitChannelState() {
     return {
-        balanceAdvertiser: utils.toNano('0.5'),
-        balancePlatform: utils.toNano('0'),
-        seqnoAdvertiser: new utils.BN(0),
-        seqnoPlatform: new utils.BN(0),
+        balanceA: utils.toNano('0.5'),
+        balanceB: utils.toNano('0'),
+        seqnoA: new utils.BN(0),
+        seqnoB: new utils.BN(0),
     };
 }
 
@@ -17,10 +17,28 @@ function getChannelInitState() {
 function createChannelConfig(advertiserWalletAddress, platformWalletAddress, channelInitState) {
     return {
         channelId: new utils.BN(123),
-        addressAdvertiser: advertiserWalletAddress,
-        addressPlatform: platformWalletAddress,
-        initBalanceAdvertiser: channelInitState.balanceAdvertiser,
-        initBalancePlatform: channelInitState.balancePlatform,
+        addressA: advertiserWalletAddress,
+        addressN: platformWalletAddress,
+        initBalanceA: channelInitState.balanceA,
+        initBalanceB: channelInitState.balanceB,
+    };
+}
+
+// TODO: This function must only receive configuration objects from contract parameters from backend
+function getLastChannelState() {
+    return getInitChannelState();
+}
+
+// TODO: This function must only receive configuration objects from contract parameters from backend
+function getNewChannelState() {
+    const lastState = getLastChannelState();
+    const clickPrice = utils.toNano('0.1');
+
+    return {
+        balanceA: lastState.balanceA.sub(clickPrice),
+        balanceB: lastState.balanceB.add(clickPrice),
+        seqnoA: lastState.seqnoA.add(new utils.BN(1)),
+        seqnoB: lastState.seqnoB,
     };
 }
 
@@ -47,12 +65,12 @@ async function createChannelObject(advertiserMnemonic, platformMnemonic) {
     const platformWalletAddress = await platformWallet.getAddress();
 
     // Channel initial configuration
-    const channelInitState = getChannelInitState();
+    const channelInitState = getInitChannelState();
     const channelConfig = createChannelConfig(advertiserWalletAddress, platformWalletAddress, channelInitState);
 
     const channel = tonweb.payments.createChannel({
         ...channelConfig,
-        isAdvertiser: true,
+        isA: true,
         myKeyPair: advertiserKeyPair,
         hisPublicKey: platformKeyPair.publicKey,
     });
@@ -100,7 +118,8 @@ async function initChannel(fromWallet, channelInitState) {
 
 
 module.exports = {
-    getChannelInitState,
+    getInitChannelState,
+    getNewChannelState,
     createChannelObject,
     deployChannel,
     topUpChannel,

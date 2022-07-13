@@ -11,6 +11,7 @@ function createWallet(tonWebObject, keyPair) {
     });
 }
 
+
 module.exports = {
     createKeyPairFromMnemonic,
     createWallet,

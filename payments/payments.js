@@ -24,15 +24,15 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
 });
 
 
-router.get('/click/:contract_id', async function (req, res) {
-   // get contract data
-   let contract_data = await backend.getContractData(req.params.contract_id);
-   console.log(contract_data);
-   // get channel from backend
-   // create new channel state
-   // sign new channel state
-   // send update to backend
-   res.send(contract_data);
+router.get('/click/:advertiser_id/:platform_id/:contract_id', async function (req, res) {
+   let advertiserMnemonic = await backend.getAdvertiserMnemonic(req.params.advertiser_id);
+   let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
+
+   const { newState, signature } = await ton.signChannelState(advertiserMnemonic, platformMnemonic);
+   
+   res.send(
+      { newState, signature }
+   );
 });
 
 
