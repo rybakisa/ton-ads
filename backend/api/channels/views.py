@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework_extensions.mixins import NestedViewSetMixin
 
-# Create your views here.
+from .models import Channel
+from .serializers import ChannelSerializer
+
+
+class ChannelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Channel instances.
+    """
+    serializer_class = ChannelSerializer
+    queryset = Channel.objects.all()

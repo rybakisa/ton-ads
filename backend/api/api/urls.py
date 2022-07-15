@@ -7,6 +7,7 @@ from placements.views import PlacementViewSet
 from advertisers.views import AdvertiserViewSet
 from campaigns.views import CampaignViewSet
 from contracts.views import ContractViewSet
+from channels.views import ChannelViewSet
 
 
 router = ExtendedSimpleRouter()
@@ -53,6 +54,11 @@ router.register(
     r'contracts',
     ContractViewSet,
     basename='contract',
+).register(
+    r'channel',
+    ChannelViewSet,
+    basename='contract-channel',
+    parents_query_lookups=['contract']
 )
 
 urlpatterns = [

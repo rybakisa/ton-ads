@@ -12,7 +12,7 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
    let channel_data = await ton.createChannel(
       advertiserMnemonic,
       platformMnemonic,
-   );
+   ); 
 
    let response = await backend.patchContract(
       channel_data,

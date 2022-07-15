@@ -7,11 +7,13 @@ class Channel(models.Model):
         blank=True,
     )
 
-    def get_initial_state(self):
-        return self.states.earliest()
+    @property
+    def initial_state(self):
+        return self.states.earliest('created')
 
-    def get_latest_state(self):
-        return self.states.latest()
+    @property
+    def latest_state(self):
+        return self.states.latest('created')
 
     def __str__(self):
         return f'{self.address}'
@@ -41,6 +43,10 @@ class ChannelState(models.Model):
     )
     seqno_platform = models.IntegerField(
         null=False,
+    )
+    signature = models.JSONField(
+        blank=False,
+        null=True,
     )
 
     def __str__(self):
