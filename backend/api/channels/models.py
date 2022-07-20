@@ -7,11 +7,23 @@ class Channel(models.Model):
         blank=True,
     )
 
-    def get_initial_state(self):
-        return self.states.earliest()
+    @property
+    def initial_state(self):
+        return self.states.earliest('created')
 
-    def get_latest_state(self):
-        return self.states.latest()
+    @property
+    def latest_state(self):
+        return self.states.latest('created')
+
+    def create_initial_state(self):
+        ChannelState(channel=self).save()
+
+    def save(self, *args, **kwargs):
+        saving_first_time = not self.pk
+        super().save(*args, **kwargs)
+
+        if saving_first_time:
+            self.create_initial_state()
 
     def __str__(self):
         return f'{self.address}'
@@ -32,15 +44,23 @@ class ChannelState(models.Model):
     )
     balance_advertiser = models.IntegerField(
         null=False,
+        default=0,
     )
     balance_platform = models.IntegerField(
         null=False,
+        default=0,
     )
     seqno_advertiser = models.IntegerField(
         null=False,
+        default=0,
     )
     seqno_platform = models.IntegerField(
         null=False,
+        default=0,
+    )
+    signature = models.JSONField(
+        blank=False,
+        null=True,
     )
 
     def __str__(self):

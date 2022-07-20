@@ -1,7 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
 from channels.serializers import ChannelSerializer
-from channels.models import Channel
 from .models import Contract
 
 

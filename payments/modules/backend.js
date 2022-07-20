@@ -33,7 +33,7 @@ async function getPlatformMnemonic(platformId) {
     return response.data.profile.ton_account_mnemonic;
 }
 
-async function patchContract(channel_data, contractId, campaignId) {
+async function patchContract(channelData, contractId, campaignId) {
     let response;
 
     try {
@@ -41,7 +41,7 @@ async function patchContract(channel_data, contractId, campaignId) {
             `${BACKEND_HOST}/api/contracts/${contractId}/`,
             {
                 "state": "ACTIVE",
-                "channel": channel_data,
+                "channel": channelData,
                 "campaign": campaignId,
             }
         );
@@ -68,9 +68,40 @@ async function getContractData(contractId) {
     return response.data;
 }
 
+async function submitChannelState(contractId, newState, signature) {
+    let response;
+
+    let contractData = await getContractData(contractId)
+    let channelId = contractData.channel.id;
+
+    let stateData = {
+        balanceA: Number(newState.balanceA),
+        balanceB: Number(newState.balanceB),
+        seqnoA: Number(newState.seqnoA),
+        seqnoB: Number(newState.seqnoB),
+        signature: signature,
+        channel: channelId,
+    };
+    console.log(stateData);
+
+    try {
+        response = await axios.post(
+            `${BACKEND_HOST}/api/contracts/${contractId}/channels/${channelId}/states/`,
+            stateData,
+        );
+    } catch (error) {
+        response = error;
+        console.error(error);
+    }
+
+    return response.data;
+}
+
+
 module.exports = {
     getAdvertiserMnemonic,
     getPlatformMnemonic,
     patchContract,
     getContractData,
+    submitChannelState,
 }
