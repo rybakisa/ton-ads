@@ -10,10 +10,10 @@ async function createChannel(advertiserMnemonic, platformMnemonic) {
     await channels.initChannel(fromAdvertiser, channels.getInitChannelState());
 
     const channelAddress = await channel.getAddress();
-    const channel_data = {
+    const channelData = {
         'address': channelAddress.toString(true, true, true),
     }
-    return channel_data;
+    return channelData;
 }
 
 

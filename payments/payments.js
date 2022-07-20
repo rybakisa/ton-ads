@@ -29,10 +29,14 @@ router.get('/click/:advertiser_id/:platform_id/:contract_id', async function (re
    let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
 
    const { newState, signature } = await ton.signChannelState(advertiserMnemonic, platformMnemonic);
+
+   let response = await backend.submitChannelState(
+      req.params.contract_id,
+      newState,
+      signature,
+   )
    
-   res.send(
-      { newState, signature }
-   );
+   res.send(response);
 });
 
 
