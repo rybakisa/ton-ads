@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const ton = require('./modules/ton/ton.js');
-const backend = require('./modules/backend.js');
+const ton = require('./modules/ton/ton');
+const backend = require('./modules/backend/backend');
 
 
 router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async function (req, res) {
