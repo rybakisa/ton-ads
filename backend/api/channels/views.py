@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework_extensions.mixins import NestedViewSetMixin
 
 from .models import Channel, ChannelState
-from .serializers import ChannelSerializer, ChannelStateSerializer
+from .serializers import ChannelSerializer, ChannelStateSerializer, ChannelConfigSerializer
 
 
 class ChannelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
@@ -13,6 +13,13 @@ class ChannelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     """
     serializer_class = ChannelSerializer
     queryset = Channel.objects.all()
+
+    @action(detail=True, url_path='config')
+    def config(self, request, *args, **kwargs):
+        serializer = ChannelConfigSerializer(
+            self.get_object()
+        )
+        return Response(serializer.data)
 
 
 class ChannelStateViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
