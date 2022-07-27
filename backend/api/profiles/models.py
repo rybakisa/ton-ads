@@ -12,6 +12,10 @@ class Profile(models.Model):
         max_length=255,
         blank=True,
     )
+    ton_account_address = models.CharField(
+        max_length=255,
+        blank=True,
+    )
 
     def __str__(self):
         return f'{self.user}'

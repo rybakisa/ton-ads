@@ -32,6 +32,10 @@ class Contract(models.Model):
         null=True,
         on_delete=models.CASCADE,
     )
+    initial_balance = models.IntegerField(
+        blank=True,
+        null=False,
+    )
 
     def __str__(self):
         return f'{self.placement} {self.state}'

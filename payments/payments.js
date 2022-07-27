@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const ton = require('./modules/ton/ton.js');
-const backend = require('./modules/backend.js');
+const ton = require('./modules/ton/ton');
+const backend = require('./modules/backend/backend');
 
 
-router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async function (req, res) {
+router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id/:channel_id', async function (req, res) {
    let advertiserMnemonic = await backend.getAdvertiserMnemonic(req.params.advertiser_id);
    let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
 
    let channel_data = await ton.createChannel(
       advertiserMnemonic,
       platformMnemonic,
+      req.params.contract_id,
+      req.params.channel_id,
    ); 
 
    let response = await backend.patchContract(
@@ -24,11 +26,11 @@ router.get('/start/:advertiser_id/:platform_id/:campaign_id/:contract_id', async
 });
 
 
-router.get('/click/:advertiser_id/:platform_id/:contract_id', async function (req, res) {
+router.get('/click/:advertiser_id/:platform_id/:contract_id/:channel_id', async function (req, res) {
    let advertiserMnemonic = await backend.getAdvertiserMnemonic(req.params.advertiser_id);
    let platformMnemonic = await backend.getPlatformMnemonic(req.params.platform_id);
 
-   const { newState, signature } = await ton.signChannelState(advertiserMnemonic, platformMnemonic);
+   const { newState, signature } = await ton.signChannelState(advertiserMnemonic, platformMnemonic, req.params.contract_id, req.params.channel_id);
 
    let response = await backend.submitChannelState(
       req.params.contract_id,
